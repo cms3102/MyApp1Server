@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+    <script src="/socket.io/socket.io.js" charset="utf-8"></script>
+    <script>
+      $(document).ready(function(){
+        var socket = io.connect();
+        socket.on('message', function(data){
+          var output = "<li>" + data.message +  "</li>"
+          $(output).prependTo('#content')
+        })
+        $('button').click(function(){
+          socket.emit('message', {
+            message: $('#message').val()
+          })
+      })
+      })
+      </script>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <input type="text" id="message">
+    <button>Button</button>
+    <ul id="content"></ul>
+  </body>
+</html>
