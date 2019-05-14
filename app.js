@@ -123,7 +123,6 @@ io.sockets.on('connection', function(socket){
 
           console.log("채팅방 유저 아이디 검색 결과 : " + element.user_id)
           let targetRoom = connectionList.find(item => item.userId === element.user_id)
-          console.log('타겟 찾음 targetRoom : ' + targetRoom)
           console.log('타겟 찾음 targetRoom : ' + targetRoom.userId)
           io.sockets.in(targetRoom.socketId).emit('receivePushMessage', message, chatRoomId, senderId, senderName, senderPic, date, element.member_count)
 
@@ -149,6 +148,7 @@ io.sockets.on('connection', function(socket){
 
           console.log("채팅방 유저 아이디 검색 결과 : " + element.user_id)
           let targetRoom = connectionList.find(item => item.userId === element.user_id)
+          console.log('타겟 찾음 targetRoom : ' + targetRoom)
           console.log('타겟 찾음 targetRoom : ' + targetRoom.userId)
           io.sockets.in(targetRoom.socketId).emit('receiveReaderInfo', userId, chatRoomId, messageIdx)
 
