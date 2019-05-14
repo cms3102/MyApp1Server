@@ -134,7 +134,7 @@ io.sockets.on('connection', function(socket){
 
   })
 
-  socket.on('sendReaderInfo', function(userId, chatRoomId){
+  socket.on('sendReaderInfo', function(userId, chatRoomId, messageIdx){
     console.log('sendReaderInfo 넘어온 reader 데이터 : ' + userId  + " / " + chatRoomId)
     client.query('select user_id, member_count from chatrooms where chatroom_id = ?', [chatRoomId], function(error, results, fields){
       
@@ -149,7 +149,7 @@ io.sockets.on('connection', function(socket){
           console.log("채팅방 유저 아이디 검색 결과 : " + element.user_id)
           let targetRoom = connectionList.find(item => item.userId === element.user_id)
           console.log('타겟 찾음 targetRoom : ' + targetRoom.userId)
-          io.sockets.in(targetRoom.socketId).emit('receiveReaderInfo', userId, chatRoomId)
+          io.sockets.in(targetRoom.socketId).emit('receiveReaderInfo', userId, chatRoomId, messageIdx)
 
         });
 
