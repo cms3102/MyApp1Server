@@ -29,8 +29,8 @@ const upload = multer({
 
 router.post('/images', upload.array('image',1), (req, res) => {
     console.log('파일 업로드 요청 서버에서 받음')
-    console.log('업로드할 파일 정보 : ' + '192.168.0.13:3000' + req.files[0].path.substring(6).replace(/\\/g, '/'))
-    const imageUri = 'http://192.168.0.13:3000' + req.files[0].path.substring(6).replace(/\\/g,'/')
+    console.log('업로드할 파일 정보 : ' + 'ec2-52-79-251-44.ap-northeast-2.compute.amazonaws.com:3000' + req.files[0].path.substring(6).replace(/\\/g, '/'))
+    const imageUri = 'https://ec2-52-79-251-44.ap-northeast-2.compute.amazonaws.com:3000' + req.files[0].path.substring(6).replace(/\\/g,'/')
 
     res.json(imageUri)
 })
