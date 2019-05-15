@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const multer = require('multer')
 
+console.log('파일 라우터 진입')
 
 const storage = multer.diskStorage({
     destination(req, file, callback){
