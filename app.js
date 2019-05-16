@@ -137,8 +137,8 @@ io.sockets.on('connection', function(socket){
 
   })
 
-  socket.on('sendReaderInfo', function(userId, chatRoomId, messageIdx){
-    console.log('sendReaderInfo 넘어온 reader 데이터 : ' + userId  + " / " + chatRoomId + "/" + messageIdx)
+  socket.on('sendReaderInfo', function(userId, chatRoomId){
+    console.log('sendReaderInfo 넘어온 reader 데이터 : ' + userId  + " / " + chatRoomId)
     client.query('select user_id, member_count from chatrooms where chatroom_id = ?', [chatRoomId], function(error, results, fields){
       
       if(error){
@@ -154,7 +154,7 @@ io.sockets.on('connection', function(socket){
           if(targetRoom !== undefined){
             console.log('타겟 찾음 targetRoom : ' + targetRoom)
             console.log('타겟 찾음 targetRoom.userId : ' + targetRoom.userId)
-            io.sockets.in(targetRoom.socketId).emit('receiveReaderInfo', userId, chatRoomId, messageIdx)
+            io.sockets.in(targetRoom.socketId).emit('receiveReaderInfo', userId, chatRoomId)
           }
 
         });
