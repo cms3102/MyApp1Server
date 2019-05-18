@@ -71,4 +71,14 @@ router.post('/login', (req, res) => {
   
 })
 
+router.post('/statemessage', (req, res) => {
+  console.log('상태 메시지 저장 실행 : ' + req.body.statemessage + ' / ' + req.body.user_id)
+  client.query("update users set state_message = ? where user_id = ?", [req.body.statemessage, req.body.user_id], function(error, results, fields){
+    if(error){
+      throw error
+    }
+    res.json("상태 메시지 저장 성공")
+  })
+})
+
 module.exports = router;
