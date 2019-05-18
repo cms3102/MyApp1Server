@@ -75,6 +75,7 @@ router.post('/statemessage', (req, res) => {
   console.log('상태 메시지 저장 실행 : ' + req.body.statemessage + ' / ' + req.body.user_id)
   client.query("update users set state_message = ? where user_id = ?", [req.body.statemessage, req.body.user_id], function(error, results, fields){
     if(error){
+      res.json("false")
       throw error
     }
     res.json("true")
