@@ -77,7 +77,7 @@ router.post('/statemessage', (req, res) => {
     if(error){
       throw error
     }
-    res.json("상태 메시지 저장 성공")
+    res.json("true")
   })
 })
 
